@@ -1,0 +1,62 @@
+cabal-version:      2.4
+name:               WS-Notify
+version:            0.1.0.0
+
+-- A short (one-line) description of the package.
+synopsis: webserver with websockets and a notification page
+
+-- A longer description of the package.
+-- description:
+
+-- A URL where users can report bugs.
+-- bug-reports:
+
+-- The license under which the package is released.
+-- license:
+author:             Ludvig Hult
+maintainer:         ludvig.hult@gmail.com
+
+-- A copyright notice.
+-- copyright:
+-- category:
+extra-source-files: CHANGELOG.md
+data-files: static/*.html
+
+library
+    exposed-modules:  MyLib
+
+    -- Modules included in this library but not exported.
+    other-modules:
+        Paths_WS_Notify
+
+    autogen-modules:
+        Paths_WS_Notify
+
+    -- LANGUAGE extensions used by modules in this package.
+    -- other-extensions:
+    build-depends:
+        base ^>=4.14.3.0,
+        text ==1.2.4.*
+    hs-source-dirs:   src
+    default-language: Haskell2010
+    ghc-options:     -Wall
+
+executable theserver
+    main-is:          Main.hs
+
+    -- Modules included in this executable, other than Main.
+    -- other-modules:
+
+    -- LANGUAGE extensions used by modules in this package.
+    -- other-extensions:
+    build-depends:
+        base ^>=4.14.3.0,
+        WS-Notify,
+        Spock >=0.14.0.0,
+        mtl ==2.2.2.*,
+        text ==1.2.4.*
+
+
+    hs-source-dirs:   app
+    default-language: Haskell2010
+    ghc-options:     -Wall

@@ -1,0 +1,5 @@
+# cabal build output
+dist-newstyle
+
+# IDE config
+.vscode
