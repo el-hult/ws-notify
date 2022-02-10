@@ -23,7 +23,7 @@ extra-source-files: CHANGELOG.md
 data-files: static/*.html
 
 library
-    exposed-modules:  MyLib
+    exposed-modules:  MyLib, SharedHandle
 
     -- Modules included in this library but not exported.
     other-modules:

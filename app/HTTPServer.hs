@@ -3,21 +3,24 @@
 module HTTPServer where
 
 import Control.Monad.Trans
-import Data.IORef
 import MyLib (mainPage)
 import Web.Spock
 import Web.Spock.Config
+import SharedHandle
+import System.IO
 
 data MySession = EmptySession
 
-newtype MyAppState = DummyAppState (IORef Int)
+newtype MyAppState = MyAppState ()
 
-main :: IO ()
-main =
-  do
-    ref <- newIORef 0
-    spockCfg <- defaultSpockCfg EmptySession PCNoDatabase (DummyAppState ref)
-    runSpock 8080 (spock spockCfg app)
+newState :: MyAppState
+newState = MyAppState ()
+
+main :: SharedHandle  -> IO ()
+main sharedStdOut = do
+    withSharedHandle sharedStdOut $ \h -> hPutStrLn h "Starting the HTTP      server at port 8080!"
+    spockCfg <- defaultSpockCfg EmptySession PCNoDatabase newState
+    runSpockNoBanner 8080 (spock spockCfg app)
 
 app :: SpockM () MySession MyAppState ()
 app = get root $ liftIO mainPage >>= html
