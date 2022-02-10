@@ -45,7 +45,9 @@ executable theserver
     main-is:          Main.hs
 
     -- Modules included in this executable, other than Main.
-    -- other-modules:
+    other-modules:
+        HTTPServer
+        WSServer
 
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:
@@ -54,7 +56,8 @@ executable theserver
         WS-Notify,
         Spock >=0.14.0.0,
         mtl ==2.2.2.*,
-        text ==1.2.4.*
+        text ==1.2.4.*,
+        websockets ==0.12.7.*
 
 
     hs-source-dirs:   app
