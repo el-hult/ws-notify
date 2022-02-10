@@ -54,10 +54,11 @@ executable theserver
     build-depends:
         base ^>=4.14.3.0,
         WS-Notify,
-        Spock >=0.14.0.0,
+        Spock >=0.14.*,
         mtl ==2.2.2.*,
         text ==1.2.4.*,
-        websockets ==0.12.7.*
+        websockets ==0.12.7.*,
+        random ==1.2.*
 
 
     hs-source-dirs:   app

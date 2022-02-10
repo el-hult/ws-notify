@@ -33,29 +33,27 @@
 
     exampleSocket = new WebSocket("ws://localhost:9160");
     exampleSocket.onopen = function (event) {
-      document.getElementById('message-send-button').disabled = false;
+      console.log("Connected to websocket server")
     }
     exampleSocket.onmessage = function (event) {
       console.log(event.data);
-      notifyMe("Got WS message. See console.log for the message.")
+      notifyMe("Got WS message!")
+      var p = document.createElement("p")
+      document.getElementById('log').appendChild(p);
+      p.textContent = "Server :"+event.data
     }
     function closeWS() {
       exampleSocket.close();
     }
 
-    function sendMessage() {
-      var x = document.getElementById("message-box").value;
-      document.getElementById("message-box").value = "";
-      exampleSocket.send(x);
-    }
   </script>
 </head>
 
 <body>
     <button onclick="closeWS()">Close WS connection!</button>
-    <br>
-    <label for="message-box">Message: </label><input type="text" id="message-box" placeholder="Message to send" size="50">
-    <button id="message-send-button" onclick="sendMessage()" disabled>Send</button>
+    <div id="log">
+
+    </div>
 </body>
 
 </html>

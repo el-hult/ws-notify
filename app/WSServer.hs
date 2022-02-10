@@ -8,6 +8,7 @@ import qualified Data.Text as T
 import qualified Network.WebSockets as WS
 import SharedHandle ( SharedHandle, withSharedHandle )
 import System.IO ( hPutStrLn )
+import System.Random (randomRIO)
 
 main :: SharedHandle -> IO ()
 main sharedStdOut = do
@@ -18,14 +19,14 @@ application :: WS.ServerApp
 application pending = do
     conn <- WS.acceptRequest pending
     WS.withPingThread conn 30 (return ()) $ do
-        finally (talk conn) disconnect
-        
+        finally (sendHelloRepeat conn) disconnect
 
-disconnect :: IO ()                
+
+disconnect :: IO ()
 disconnect = putStrLn "A user disconnected"
 
-talk :: WS.Connection -> IO ()
-talk conn = forever $ do
-    msg <- WS.receiveData conn
-    threadDelay 1000000 --sleep for a million microseconds, or one second
-    WS.sendTextData conn $ (T.pack "You told me: ") <> msg
+sendHelloRepeat :: WS.Connection -> IO ()
+sendHelloRepeat conn = forever $ do
+    delay <- randomRIO (1*1000*1000,5*1000*1000) -- between 1 and 5 million microseconds = 0.5 to 1 second
+    threadDelay delay
+    WS.sendTextData conn $ T.pack "Hello?!"

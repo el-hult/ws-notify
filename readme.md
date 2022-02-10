@@ -1,10 +1,7 @@
 # WS-NOTIFY
 
-as web server that server a simple home page. It connects back with javascript to the server via websockets.
+A web server that server a simple home page. It connects back with javascript to the server via websockets.
 Then the server sends push notifications via the socket at random intervals.
-
-at least, this is the goal I'm aiming for.
-
 
 ## Develop
 
