@@ -3,3 +3,7 @@ dist-newstyle
 
 # IDE config
 .vscode
+
+# TLS certificate and RSA key for self signing
+*.csr
+*.pem

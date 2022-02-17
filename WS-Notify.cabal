@@ -1,6 +1,6 @@
 cabal-version:      2.4
 name:               WS-Notify
-version:            1.0.0.0
+version:            1.1.0.0
 
 -- A short (one-line) description of the package.
 synopsis: webserver with websockets and a notification page
@@ -54,11 +54,13 @@ executable theserver
     build-depends:
         base ^>=4.14.3.0,
         WS-Notify,
-        Spock >=0.14.*,
+        Spock >=0.14.0,
         mtl ==2.2.2.*,
         text ==1.2.4.*,
         websockets ==0.12.7.*,
-        random ==1.2.*
+        random ==1.2.*,
+        warp-tls >=3.3.0,
+        warp >= 3.3
 
 
     hs-source-dirs:   app
